@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PictureBook</string>
+    <!--    권한-->
+    <string name="permission_read_external_storage">현재 앱을 원활히 사용하시려면 외부 저장소 읽기 권한이 필요합니다.</string>
+    <string name="permission_write_external_storage">현재 앱을 원활히 사용하시려면 외부 저장소 쓰기 권한이 필요합니다.</string>
+</resources>
