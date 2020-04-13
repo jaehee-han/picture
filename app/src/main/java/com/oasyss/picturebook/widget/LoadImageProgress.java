@@ -49,11 +49,11 @@ public class LoadImageProgress {
     public void stepStart() {
         step(0, R.string.progress_starting);
     }
-
+//
     public void stepDone() {
         step(STEPS, R.string.progress_done);
     }
-
+//
     public void stepFail() {
         step(STEPS, R.string.progress_error);
     }

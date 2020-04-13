@@ -44,26 +44,23 @@ public class ChoosePictureActivity extends FullScreenActivity
     {
         super.onCreate(savedInstanceState);
         ScreenUtils.setFullscreen(this);
-        // Apparently this cannot be set from the style.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
                 WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
         setContentView(R.layout.choose_picture);
         RecyclerView imagesView = findViewById(R.id.images);
-        // load images ahead
+        // 이미지 호출
         int space = getScreenHeight() / 2;
         LinearLayoutManager manager = new PreCachingLayoutManager(this, space);
         imagesView.setLayoutManager(manager);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        // 레이아웃에서 리사이클뷰 사이즈변경 X
         imagesView.setHasFixedSize(true);
 
-        // use a linear layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         imagesView.setLayoutManager(layoutManager);
 
-        // create a database with all the images
+
         SettingsImageDB imageDB = Settings.of(this).getImageDB();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -74,7 +71,7 @@ public class ChoosePictureActivity extends FullScreenActivity
             }
         }
 
-        // set adapter with all the images
+
         SectionsAdapter adapter = new SectionsAdapter(
                 imageDB, R.layout.choose_picture_line,
                 new int[]{R.id.image1, R.id.image2});
@@ -96,7 +93,7 @@ public class ChoosePictureActivity extends FullScreenActivity
     }
 
     private int getScreenHeight() {
-        // from https://stackoverflow.com/a/4744499
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;

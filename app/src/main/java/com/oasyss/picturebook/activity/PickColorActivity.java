@@ -35,7 +35,6 @@ public class PickColorActivity extends AbstractColoringActivity implements
     {
         super.onCreate(savedInstanceState);
 
-        // Apparently this cannot be set from the style.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
                 WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 

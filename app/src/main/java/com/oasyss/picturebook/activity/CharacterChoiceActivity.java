@@ -22,6 +22,8 @@ import com.oasyss.picturebook.util.ScreenUtils;
 
 public class CharacterChoiceActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout linearMonkey, linearMouse, linearRabbit, linearDog;
+
+    String choiceChar = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,7 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearDog.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
 //                alertDialog("원숭이");
-
+                choiceChar = "monkey";
                 intent.putExtra("data", "원숭이");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
             break;
@@ -90,7 +92,8 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearRabbit.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
                 linearDog.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
-                intent.putExtra("data", "원숭이");
+                choiceChar = "mouse";
+                intent.putExtra("data", "쥐");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
             break;
             case R.id.linearRabbit:
@@ -100,6 +103,7 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearMonkey.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
                 linearDog.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
+                choiceChar = "rabbit";
                 intent.putExtra("data", "토끼");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
                 break;
@@ -110,7 +114,8 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearRabbit.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
                 linearMonkey.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
-                intent.putExtra("data", "강아지");
+                choiceChar = "dog";
+                intent.putExtra("data", "개");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
                 break;
         }
@@ -123,6 +128,7 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 String result = data.getStringExtra("result");
                 if(result.equals("true")){
                     Intent intent = new Intent(this, PaintActivity.class);
+                    intent.putExtra("char", choiceChar);
                     startActivity(intent);
                 }
             }

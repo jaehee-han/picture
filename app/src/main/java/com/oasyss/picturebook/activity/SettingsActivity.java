@@ -39,23 +39,16 @@ public class SettingsActivity extends BasicActivity {
 
         settings = Settings.of(this);
 
-        // SAVE LOCATION
+        // 위치 저장
         File saveLocation = BitmapSaver.getSavedImagesDirectory(this);
         TextView saveLocationText = findViewById(R.id.save_location);
         saveLocationText.setText(getString(R.string.settings_save_location, saveLocation.toString()));
         Button openSaveLocation = findViewById(R.id.open_save_location);
-        // open a location with the file exporer
-        // see https://stackoverflow.com/a/26651827/1320237
-        // see https://stackoverflow.com/a/38858040
-        // see https://stackoverflow.com/a/8727354
         Uri saveLocationUri =  FileProvider.getUriForFile(this, this.getPackageName() + ".provider", saveLocation);;
         final Intent openSaveLocationIntent = new Intent(Intent.ACTION_VIEW);
         openSaveLocationIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         openSaveLocationIntent.setDataAndType(saveLocationUri, "vnd.android.document/directory");
-        // see http://www.openintents.org/action/android-intent-action-view/file-directory
         openSaveLocationIntent.putExtra("org.openintents.extra.ABSOLUTE_PATH", saveLocation.toString());
-        // from https://github.com/derp-caf/packages_apps_DocumentsUI/blob/ab8e8638c87cd5f7fe1005800520e739b3a48cd5/src/com/android/documentsui/ScopedAccessActivity.java#L114
-        // see https://stackoverflow.com/a/60645628/1320237
         openSaveLocationIntent.putExtra("com.android.documentsui.FILE", saveLocation.toString());
         openSaveLocationIntent.putExtra("com.android.documentsui.IS_ROOT", false); // is the root folder?
         openSaveLocationIntent.putExtra("com.android.documentsui.IS_PRIMARY", true); // is the primary volume? SD-Card should be false
@@ -68,8 +61,6 @@ public class SettingsActivity extends BasicActivity {
                 }
             });
         } else  {
-            // if you reach this place, it means there is no any file
-            // explorer app installed on your device
             openSaveLocation.setVisibility(View.GONE);
         }
 
@@ -115,7 +106,6 @@ public class SettingsActivity extends BasicActivity {
         galleries.removeAllViews();
         for (final SettingsImageDB.Entry db : imageDBs.entries()) {
             LinearLayout galleryLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.gallery, null);
-            // check box
             CheckBox checkBox = galleryLayout.findViewById(R.id.in_use);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -125,10 +115,8 @@ public class SettingsActivity extends BasicActivity {
             });
             checkBox.setText(db.getName());
             checkBox.setChecked(db.isActivated());
-            // description
             TextView description = galleryLayout.findViewById(R.id.text_description);
             description.setText(db.getDescription());
-            // delete button
             ImageButton deleteButton = galleryLayout.findViewById(R.id.button_delete);
             deleteButton.setVisibility(db.canBeDeleted() ? View.VISIBLE : View.GONE);
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +128,6 @@ public class SettingsActivity extends BasicActivity {
 
                 }
             });
-            // browse button
             ImageButton browseButton = galleryLayout.findViewById(R.id.button_browse);
             browseButton.setVisibility(db.canBrowse() ? View.VISIBLE : View.GONE);
             browseButton.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +136,6 @@ public class SettingsActivity extends BasicActivity {
                     db.browse(SettingsActivity.this);
                 }
             });
-            // add to view
             galleries.addView(galleryLayout);
         }
     }

@@ -22,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.oasyss.picturebook.util.BitmapColorSearch;
@@ -31,6 +32,8 @@ import com.oasyss.picturebook.util.images.BitmapImage;
 import com.oasyss.picturebook.util.images.ImageDB;
 import com.oasyss.picturebook.util.images.NullImage;
 import com.oasyss.picturebook.util.quell.ColorComparator;
+
+import java.util.ArrayList;
 
 
 public class PaintArea {
@@ -60,16 +63,26 @@ public class PaintArea {
 
     public ImageDB.Image getImage() {
         if (canPaint()) {
+
             return new BitmapImage(bitmap);
         }
         return new NullImage();
     }
+    int bitmapSaveCount = 0;
+    Bitmap firstBitMap;
 
     public void setImageBitmap(final Bitmap bm) {
+        if(bitmapSaveCount == 0){
+//            Extention.addTouchBitMapList(bm);
+
+            bitmapSaveCount++;
+        }
+        firstBitMap = bm;
+
         setImageBitmapWithSameSize(bm);
         view.setLayoutParams(layoutParams);
         view.setRotation(0);
-        // use post to defer execution until the size of the view is determined
+        //뷰 사이즈 측정
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -79,23 +92,15 @@ public class PaintArea {
                 int maxWidth = ((View)view.getParent()).getWidth();
                 int maxHeight = ((View)view.getParent()).getHeight();
                 if ((bmHeight < bmWidth) != (maxHeight < maxWidth)) {
-                    // the image would best be rotated
-                    // scale it so it fits the maximum bounds
+                    // 핸드폰 사이즈에 맞춰 뷰 회전
                     view.setRotation(-90); // bottom to bottom
                     float scale1 = maxHeight / (float)bmWidth;
                     float scale2 = maxWidth / (float)bmHeight;
                     float scale;
                     if (scale1 < scale2) {
-                        // height determines size
-                        // test with image which is longer than wide but does not fit in maxWidth
-                        // example: http://gallery.quelltext.eu/images/freesvg.org/beachview.png
                         layoutParams.width = maxHeight;
                         layoutParams.height = maxHeight * bmHeight / bmWidth;
                     } else {
-                        // width determines size
-                        // test with image which is longer than wide but does fits in maxWidth
-                        // example: http://gallery.quelltext.eu/images/freesvg.org/mascarin-parrot.png
-                        // at the end of scaling this, the height of the view should equal maxWidth
                         layoutParams.width = maxWidth * bmWidth / bmHeight;
                         layoutParams.height = maxWidth;
                     }
@@ -103,17 +108,9 @@ public class PaintArea {
                     float scale1 = maxHeight / (float)bmHeight;
                     float scale2 = maxWidth / (float)bmWidth;
                     if (scale1 < scale2) {
-                        // height determines size
-                        // test this is the case with the default image from the app
                         layoutParams.width = maxHeight * bmWidth / bmHeight;
                         layoutParams.height = maxHeight;
                     } else {
-                        // width determines size
-                        // test with an image which is very wide
-                        // example: http://gallery.quelltext.eu/images/freesvg.org/cartoon_kids.png
-                        // set width and height of view
-                        // see https://stackoverflow.com/a/17066696/1320237
-                        // see https://stackoverflow.com/a/5042326/1320237
                         layoutParams.width = maxWidth;
                         layoutParams.height = maxWidth * bmHeight / bmWidth;
                     }
@@ -125,6 +122,7 @@ public class PaintArea {
 
     private void setImageBitmapWithSameSize(Bitmap bitmap) {
         view.setImageBitmap(bitmap);
+
         this.bitmap = bitmap;
     }
 
@@ -142,15 +140,15 @@ public class PaintArea {
         {
             // 터치 사운드
             view.playSoundEffect(SoundEffectConstants.CLICK);
-            // get the correct position with rotation
+
             float eventX = e.getX();
             float eventY = e.getY();
-            // set the position
+
             int x = (int)(eventX * bitmap.getWidth() / view.getWidth());
             int y = (int)(eventY * bitmap.getHeight() / view.getHeight());
             Log.d("touch", "X (" + e.getRawX() + ") " + eventX + " -> " + x + " | Y (" + e.getRawY() + ") " + eventY + " -> " + y);
             if (bitmap.getPixel(x, y) == FloodFill.BORDER_COLOR) {
-                // touching a border, we want to find a better place to color
+
                 BitmapColorSearch search = new BitmapColorSearch(bitmap);
                 search.startSearch(x, y, ColorComparator.unequal(FloodFill.BORDER_COLOR, paintColor), COLOR_SEARCH_RADIUS);
                 if (!search.wasSuccessful()) {
@@ -162,11 +160,32 @@ public class PaintArea {
                 }
             }
             Bitmap newBitmap = FloodFill.fill(bitmap, x, y, paintColor);
+            Extention.addTouchBitMapList(newBitmap);
             setImageBitmapWithSameSize(newBitmap);
         }
         return true;
     }
+    //뒤로가기
+    ArrayList bitMapList = new ArrayList();
+    public void backBitMap(){
+        bitMapList = Extention.getTouchBitMapList();
+        int bitMapSize = bitMapList.size()-2;
+        if(bitMapSize < 0){
+            setImageBitmapWithSameSize(firstBitMap);
 
+            Extention.clearTouchBitMapList();
+
+            Extention.setTouchBitMapList(bitMapList);
+        }else{
+            setImageBitmapWithSameSize((Bitmap)bitMapList.get(bitMapSize));
+
+            bitMapList.remove(bitMapSize);
+            Extention.setTouchBitMapList(bitMapList);
+        }
+
+
+
+    }
     public Bitmap getBitmap() {
         return bitmap;
     }

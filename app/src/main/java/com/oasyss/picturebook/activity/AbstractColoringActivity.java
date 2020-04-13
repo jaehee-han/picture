@@ -31,8 +31,9 @@ import java.util.List;
 public abstract class AbstractColoringActivity extends FullScreenActivity
 {
 
-    public static final String INTENT_PICK_COLOR = "org.androidsoft.coloring.paint.PICK_COLOR";
-    public static final String INTENT_ABOUT = "org.androidsoft.coloring.paint.ABOUT";
+    public static final String INTENT_PICK_COLOR = "";
+    public static final String
+            INTENT_ABOUT = "coloring.paint.ABOUT";
 
     @Override
     public void onCreate(Bundle savedInstanceState)

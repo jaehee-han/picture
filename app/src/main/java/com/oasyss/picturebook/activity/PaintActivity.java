@@ -32,12 +32,12 @@ import com.oasyss.picturebook.widget.PaintArea;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.oasyss.picturebook.activity.AbstractColoringActivity.INTENT_ABOUT;
 
 public class PaintActivity extends AbstractColoringActivity {
     private static final int REQUEST_CHOOSE_PICTURE = 0;
@@ -54,10 +54,11 @@ public class PaintActivity extends AbstractColoringActivity {
     private int lastSavedHash;
     private ImageView paintView;
 
-    private ImageView eraserBtn;
+    private ImageView eraserBtn, back_btn;
     private ColorButton eraserColorBtn;
 
     private LinearLayout eraserLayout, backLayout;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,9 +71,11 @@ public class PaintActivity extends AbstractColoringActivity {
         backLayout = (LinearLayout)findViewById(R.id.back_layout);
 
         colorButtonManager = new ColorButtonManager();
-        //지우개버튼클릭
         eraserColorBtn = (ColorButton)findViewById(R.id.eraser_color_btn);
         eraserBtn = (ImageView)findViewById(R.id.eraser_img_view);
+        back_btn = (ImageView)findViewById(R.id.back_btn);
+
+        //지우개
         eraserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +84,14 @@ public class PaintActivity extends AbstractColoringActivity {
                 eraserLayout.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all_red));
             }
         });
+        //뒤로가기
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paintArea.backBitMap();
+            }
+        });
+
         //컬러팔넷 호출
 //        View pickColorsButton = findViewById(R.id.pick_color_button);
 //        pickColorsButton.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +113,7 @@ public class PaintActivity extends AbstractColoringActivity {
         loadImageFromIntent(getIntent());
     }
 
+    //이미지 호출
     private void loadImageFromIntent(final Intent intent) {
         paintView.post(new Runnable() {
             @Override
@@ -110,9 +122,18 @@ public class PaintActivity extends AbstractColoringActivity {
                 ImageDB.Image image;
                 Extention.Log("ARG_IMAGE : " + ARG_IMAGE);
                 Extention.Log("extras : " + extras);
-                if (extras != null && extras.containsKey(ARG_IMAGE)) {
+                Extention.Log("img : "+ new ResourceImageDB(PaintActivity.this).randomImage());
+//                if (extras != null && extras.containsKey(ARG_IMAGE)) {
+//                    image = extras.getParcelable(ARG_IMAGE);
+//                } else {
+//                    image = new ResourceImageDB(PaintActivity.this).randomImage();
+//                }
+                String choiceChar = intent.getStringExtra("char");
+                if(extras != null && extras.containsKey(ARG_IMAGE)){
                     image = extras.getParcelable(ARG_IMAGE);
-                } else {
+                }else if(choiceChar != ""){
+                    image = new ResourceImageDB(PaintActivity.this).charatorSelectImage(choiceChar, PaintActivity.this);
+                }else{
                     image = new ResourceImageDB(PaintActivity.this).randomImage();
                 }
                 // TODO: 이미지 호출될동안 로딩프로그레스
@@ -123,9 +144,7 @@ public class PaintActivity extends AbstractColoringActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        // capture the new intent
-        // see https://developer.android.com/guide/components/activities/tasks-and-back-stack
-        // see https://developer.android.com/reference/android/app/Activity#onNewIntent(android.content.Intent)
+        // 동작 포착
         super.onNewIntent(intent);
         saveBitmap();
         loadImageFromIntent(intent);
@@ -133,8 +152,6 @@ public class PaintActivity extends AbstractColoringActivity {
 
     @Override
     public void onBackPressed() {
-        // code for double-clicking the back button to exit the activity
-        // see https://stackoverflow.com/a/13578600/1320237
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
             return;
@@ -196,24 +213,22 @@ public class PaintActivity extends AbstractColoringActivity {
         String path;
         int newHash = BitmapHash.hash(newBitmapSaver.getBitmap());
         if (bitmapSaver != null && bitmapSaver.isRunning()) {
-            // pressing save while in progress
+            // 색칠진행중 저장누를시
             message = R.string.toast_save_file_running;
             path = bitmapSaver.getFile().getPath();
         } else if (lastSavedHash == newHash) {
-            // image is already saved
+            // 저장 준비 완료
             message = R.string.toast_save_file_again;
             path = bitmapSaver.getFile().getPath();
             newBitmapSaver.alreadySaved(bitmapSaver);
         } else {
-            // image is not saved
+            // 이미지 저장이 아닐때
             bitmapSaver = newBitmapSaver;
             bitmapSaver.start();
             message = R.string.toast_save_file;
             path = bitmapSaver.getFile().getName();
             lastSavedHash = BitmapHash.hash(newBitmapSaver.getBitmap());
         }
-        // create a toast
-        // see https://developer.android.com/guide/topics/ui/notifiers/toasts#java
         String text = getString(message, path);
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
@@ -221,8 +236,6 @@ public class PaintActivity extends AbstractColoringActivity {
     }
 
     private void openPictureChoice() {
-        // how to start a new activity
-        // see https://stackoverflow.com/a/4186097
         Intent intent = new Intent(this, ChoosePictureActivity.class);
         ImageDB.Image image = paintArea.getImage();
         intent.putExtra(ChoosePictureActivity.ARG_IMAGE, image);
@@ -281,14 +294,13 @@ public class PaintActivity extends AbstractColoringActivity {
             }
         }
 
-        // Select the button that has the given color, or if there is no such
-        // button then set the least recently used button to have that color.
+        // 선택한 컬러버튼
         public void selectColor(int color)
         {
             _selectedColorButton = selectAndRemove(color);
             if (_selectedColorButton == null)
             {
-                // Recycle the last used button to hold the new color.
+                // 마지막으로 사용한 컬러버튼
                 _selectedColorButton = _usedColorButtons.removeLast();
                 _selectedColorButton.setColor(color);
                 _selectedColorButton.setSelected(true);
@@ -297,7 +309,7 @@ public class PaintActivity extends AbstractColoringActivity {
             setPaintViewColor();
         }
 
-        // Select the given button.
+        // 뿌려지는 버튼
         private void selectButton(ColorButton button)
         {
             _selectedColorButton = selectAndRemove(button.getColor());
@@ -305,7 +317,7 @@ public class PaintActivity extends AbstractColoringActivity {
             setPaintViewColor();
         }
 
-        // Set the currently selected color in the paint view.
+        // 팔넷 컬러보기
         private void setPaintViewColor()
         {
             int selectedColor = _selectedColorButton.getColor();
@@ -319,12 +331,9 @@ public class PaintActivity extends AbstractColoringActivity {
 //            buttonHolder.setBackgroundColor(backgroundColor);
         }
 
-        // Finds the button with the color. If found, sets it to selected,
-        // removes it and returns it. If not found, it returns null. All
-        // other buttons are unselected.
+        //선택한 컬러버튼으로 색상 인식
         private ColorButton selectAndRemove(int color)
         {
-            Extention.Log("adsfasdfasdfasdf");
             ColorButton result = null;
             Iterator<ColorButton> i = _usedColorButtons.iterator();
             while (i.hasNext())
@@ -344,16 +353,14 @@ public class PaintActivity extends AbstractColoringActivity {
             }
             return result;
         }
-        // A list of pointers to all buttons in the order
-        // in which they have been used.
+        // 컬러버튼 목록
         private List<ColorButton> _colorButtons = new ArrayList<ColorButton>();
         private LinkedList<ColorButton> _usedColorButtons = new LinkedList<ColorButton>();
         private ColorButton _selectedColorButton;
     }
-
-    private static final String GALLERY_URL = "https://gallery.quelltext.eu/";
+    //나중에 추가될 이미지 모음집
+    private static final String GALLERY_URL = "";
     private void openGallery() {
-        // open url in browser, see https://stackoverflow.com/a/2201999/1320237
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(GALLERY_URL));
         startActivity(browserIntent);
     }

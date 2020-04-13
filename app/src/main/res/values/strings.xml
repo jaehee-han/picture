@@ -2,92 +2,73 @@
     <string name="app_name">Picture Book</string>
 
     <string name="menu_new">New</string>
-    <string name="menu_save">Save</string>
-    <string name="menu_share">Share</string>
+    <string name="menu_save">저장</string>
+    <string name="menu_share">공유</string>
     <string name="menu_about">About</string>
-
-    <string name="dialog_saving">Saving to Pictures…</string>
-    <string name="dialog_saving_ok">OK!</string>
-    <string name="dialog_saving_error">Error!</string>
-    <string name="dialog_share">Share image using</string>
-    <!-- Credits screen -->
+    <!-- 다이얼로그 -->
+    <string name="dialog_saving">저장</string>
+    <string name="dialog_saving_ok">확인</string>
+    <string name="dialog_saving_error">에러</string>
+    <string name="dialog_share">공유된 이미지 사용</string>
     <string name="credits_current_version" formatted="true">Version <xliff:g example="1.0.1" id="versionName">%1$s</xliff:g></string>
 
-    <string name="button_go">Go</string>
-
-    <!-- What's new dialog -->
-    <string name="first_run_dialog_title">Welcome to the Coloring Book!</string>
-    <string name="first_run_dialog_message">Thanks for downloading the Coloring Book\n\n
-    Quick start instructions :\n
-    \t• Select color and paint template with your finger.\n
-    \n\n Enjoy it!\n
-    </string>
-    <string name="whats_new_dialog_title">What\'s new in this version of the Coloring Book</string>
-    <string name="whats_new_dialog_message" formatted="true">Thanks for upgrading the Coloring Book\n\n
-    <b>New in version <xliff:g example="1.0.1" id="versionName">%1$s</xliff:g>:</b>\n
-    <xliff:g example="\t• Minor bugs fixes.\n" id="changelog">%2$s</xliff:g>
-    \n\nEnjoy it and don\'t forget to rate it to support the development.
-    </string>
-    <string name="toast_double_click_back_button" tools:ignore="MissingTranslation">Please click BACK again to exit</string>
-    <string name="progress_starting" tools:ignore="MissingTranslation">starting</string>
-    <string name="progress_done" tools:ignore="MissingTranslation">done</string>
-    <string name="progress_error" tools:ignore="MissingTranslation">an error occurred</string>
-    <string name="progress_input_preview" tools:ignore="MissingTranslation">receiving image</string>
-    <string name="progress_preparing_clustering" tools:ignore="MissingTranslation">preparing clustering</string>
-    <string name="progress_sample_data" tools:ignore="MissingTranslation">choosing colors to classify</string>
-    <string name="progress_clustering_data" tools:ignore="MissingTranslation">finding suitible colors for the image</string>
-    <string name="progress_create_cluster" tools:ignore="MissingTranslation">creating classified image</string>
-    <string name="progress_counting_sizes" tools:ignore="MissingTranslation">measuring areas</string>
-    <string name="progress_removing_noise" tools:ignore="MissingTranslation">removing small areas which can not be painted</string>
-    <string name="progress_show_cluster" tools:ignore="MissingTranslation">showing the classified image</string>
-    <string name="progress_show_smoothed_image" tools:ignore="MissingTranslation">showing the image with bigger paintable areas</string>
-    <string name="progress_draw_lines" tools:ignore="MissingTranslation">drawing lines around the areas</string>
+    <string name="button_go">이동</string>
+    <string name="toast_double_click_back_button" tools:ignore="MissingTranslation">종료하려면 한번 더 뒤로가기 버튼을 눌러 주세요.</string>
+    <string name="progress_starting" tools:ignore="MissingTranslation">시작</string>
+    <string name="progress_done" tools:ignore="MissingTranslation">종료</string>
+    <string name="progress_error" tools:ignore="MissingTranslation">에러</string>
+    <string name="progress_input_preview" tools:ignore="MissingTranslation">이미지 받는중</string>
+    <string name="progress_preparing_clustering" tools:ignore="MissingTranslation">준비</string>
+    <string name="progress_sample_data" tools:ignore="MissingTranslation">색상 선택</string>
+    <string name="progress_clustering_data" tools:ignore="MissingTranslation">적합한 색상 찾는중</string>
+    <string name="progress_create_cluster" tools:ignore="MissingTranslation">분류된 이미지 생성중</string>
+    <string name="progress_counting_sizes" tools:ignore="MissingTranslation">영역 체크중</string>
+    <string name="progress_removing_noise" tools:ignore="MissingTranslation">영역 제거중</string>
+    <string name="progress_show_cluster" tools:ignore="MissingTranslation">분류된 이미지 표시중</string>
+    <string name="progress_show_smoothed_image" tools:ignore="MissingTranslation">영역 이미지 표시중</string>
+    <string name="progress_draw_lines" tools:ignore="MissingTranslation">선 그리는 중</string>
     <string name="empty" translatable="false" />
-    <string name="permission_read_external_storage">The app needs permission to read the external storage so you can continue painting pictures.</string>
-    <string name="permission_write_external_storage">The app needs permission to save painted pictures.</string>
-    <string name="permission_expand_status_bar">The app needs permission to prevent children to open the status bar.</string>
-    <string name="progress_connecting_components">finding connected areas - this may take several minutes</string>
-    <string name="progress_measuring_areas">measuring areas and removing small areas</string>
-    <string name="progress_show_components">creating picture with components</string>
-    <!-- PaintActivity: Toast when the saving button is pressed. -->
-    <string name="toast_save_file">Saving as <xliff:g example="20200305-200938.png" id="fileName">%1$s</xliff:g></string>
-    <!-- PaintActivity: Toast when the saving button is pressed. -->
-    <string name="toast_save_file_running">Still saving as <xliff:g example="/DCIM/Coloring Book/20200305-200938.png" id="fileName">%1$s</xliff:g></string>
-    <!-- PaintActivity: Toast when the saving button is pressed. -->
-    <string name="toast_save_file_again">Already saved as <xliff:g example="/DCIM/Coloring Book/20200305-200938.png" id="fileName">%1$s</xliff:g></string>
-    <string name="progress_convert_binary">converting image to black and white</string>
-    <string name="menu_gallery">Get more Images</string>
+    <string name="permission_read_external_storage">외부저장소 읽기 권한이 필요합니다.</string>
+    <string name="permission_write_external_storage">외부저장소 쓰기 권한이 필요합니다.</string>
+    <string name="permission_expand_status_bar">상태표시줄 잠금 권한이 필요합니다.</string>
+    <string name="progress_connecting_components">현재 지역을 찾는중입니다.</string>
+    <string name="progress_measuring_areas">작은영역 제거중입니다.</string>
+    <string name="progress_show_components">그림 만드는중입니다.</string>
+    <!-- PaintActivity: 저장버튼 누를때 -->
+    <string name="toast_save_file">저장하시겠습니까? ex) <xliff:g example="20200305-200938.png" id="fileName">%1$s</xliff:g></string>
+    <string name="toast_save_file_running">저장하시겠습니까? ex) <xliff:g example="/DCIM/Coloring Book/20200305-200938.png" id="fileName">%1$s</xliff:g></string>
+    <string name="toast_save_file_again">다시 저장하시겠습니까? ex)<xliff:g example="/DCIM/Coloring Book/20200305-200938.png" id="fileName">%1$s</xliff:g></string>
+    <string name="progress_convert_binary">흑백전환</string>
+    <string name="menu_gallery">이미지 받기</string>
     <string name="title_activity_settings">Settings</string>
     <string name="menu_settings">Settings</string>
     <!-- Settings: Save Location: Title -->
-    <string name="settings_save_location_title">Saved Pictures</string>
+    <string name="settings_save_location_title">저장</string>
     <!-- Settings: Save Location: Explanation -->
-    <string name="settings_save_location">The pictures will be saved to <xliff:g example="/DCIM/Coloring Book/" id="path">%1$s</xliff:g>.</string>
-    <!-- Settings: Save Location: Button text to open the location where the pictures are saved. -->
-    <string name="settings_open_save_location">Open</string>
-    <!-- Settings: Galleries: Title -->
-    <string name="settings_gallery_title">Image Galleries</string>
-    <!-- Settings: Galleries: Explanation -->
-    <string name="settings_galleries">Image Galleries contain much more images than the app. You can load images from the galleries into the app or show them when a new picture is created. If images are in many galleries, they are shown only once.</string>
-    <string name="settings_gallery_quelltext">This is the default gallery of the maintainer. If activated, more images are downloaded on demand and can be chosen for painting.</string>
-    <string name="settings_gallery_quelltext_http">This is an http version of the default gallery to allow access if https does not work.</string>
-    <!-- Settings: Galleries: Button to open the gallery in a browser -->
-    <string name="settings_gallery_browse">Browse</string>
-    <!-- Settings: Galleries: Button to delete the gallery -->
-    <string name="settings_gallery_delete">Delete</string>
-    <string name="settings_galleries_user_defined">If activated, images from %1$s can be chosen in this app.</string>
-    <string name="settings_galleries_resources_title">App Images</string>
-    <string name="settings_galleries_resources">If activated, (recommended) the images provided by the app can be chosen for painting. Deactivate this if you do not like to see them.</string>
-    <string name="settings_galleries_saved_images">If activated, (recommended) all the saved images are shown and painting them can be continued.</string>
-    <string name="settings_galleries_saved_images_title">Saved Images</string>
-    <string name="settings_galleries_last_painted_title">Last painted image</string>
-    <string name="settings_galleries_last_painted">If activated, (recommended) the image one was painting can be clicked and resumed. If deactivated, only the back button leads back to the current painting.</string>
-    <string name="error_occurred_message">An error occurred. You can send it to %1$s. Or report it at %2$s.</string>
-    <string name="error_report_title">Error Report from %1$s</string>
-    <string name="error_email" translatable="false">niccokunzmann@rambler.ru</string>
-    <!-- Error Reporter: This is the link to the issues page https://github.com/niccokunzmann/coloring-book/issues/ -->
-    <string name="error_link">shorturl.de/coloring</string>
-    <string name="error_occurred_toast">Error copied to clipboard</string>
-    <string name="image_list_section_description">Number of images: <xliff:g example="10">%1$d</xliff:g></string>
-    <string name="permission_access_wifi_state">The app would like to have your permission to check if wifi is active, so that the app only displays images which can be accessed offline. If you do not plan to enable the online gallery in the app, you can ignore this.</string>
+    <string name="settings_save_location"><xliff:g example="/DCIM/Coloring Book/" id="path">%1$s</xliff:g>해당 경로에 사진이 저장 됩니다.</string>
+    <string name="settings_open_save_location">열기</string>
+    <string name="settings_gallery_title">사진첩</string>
+    <string name="settings_galleries">이미지 모음집에는 앱보다 훨씬 더 많은 이미지가 있습니다. 모음집에서 이미지를 앱으로 불러오거나 새로운 그림을 그릴수 있습니다. 이미지가 많은 모음집에있는 경우 한 번만 표시됩니다.</string>
+    <string name="settings_gallery_quelltext">이미지 모음집입니다 활성화 하시면 더 많은 이미지 다운로드가 가능합니다.</string>
+    <string name="settings_gallery_quelltext_http">https작동안될때 http호출</string>
+    <string name="settings_galleries_user_defined">활성화시 앱에서 [%1$s] 이미지를 볼 수 있습니다.</string>
+    <string name="settings_galleries_resources_title">앱 이미지</string>
+    <string name="settings_galleries_resources">활성화시 앱에서 제공한 이미지를 선택할 수 있습니다. 보지 않으려면 비활성화 하십시오.</string>
+    <string name="settings_galleries_saved_images">활성화시 저장된 모든이미지가 표시 됩니다.</string>
+    <string name="settings_galleries_saved_images_title">저장</string>
+    <string name="settings_galleries_last_painted_title">마지막으로 그린 이미지</string>
+    <string name="settings_galleries_last_painted">활성화시 색칠된 이미지를 클릭하여 다시 시작 가능합니다. 뒤로가기 버튼 누를시 현재 이미지로 돌아 갑니다.</string>
+    <string name="error_occurred_message">에러가 발생했습니다. %1$s. 또는 %2$s. 여기로 보내주세요.</string>
+    <string name="error_report_title">에러 %1$s</string>
+    <string name="error_email" translatable="false">a@a.a</string>
+    <string name="error_link">에러가 발생하였습니다 해당 url로 문의해 주세요.[]</string>
+    <string name="error_occurred_toast">클립보드 복사 오류</string>
+    <string name="image_list_section_description">이미지 순번 : <xliff:g example="10">%1$d</xliff:g></string>
+
+<!--    ChoicePopupActivity : -->
+    <string name="select_charator_pop">를 선택 하시겠습니까?</string>
+    <string name="function_coming_soon">현재 이 기능은 준비중 입니다.</string>
+
+<!--    MainActivity-->
+    <string name="window_touch_plz">화면을 터치해 주세요.</string>
 </resources>

@@ -34,7 +34,7 @@ public class PicCharChoiceActivity extends AppCompatActivity implements View.OnC
                 startActivity(intent);
                 break;
             case R.id.choice_pic:
-                Toast.makeText(getApplicationContext(), "체험판에선 선택 불가합니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.function_coming_soon, Toast.LENGTH_SHORT).show();
                 break;
         }
     }

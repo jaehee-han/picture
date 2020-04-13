@@ -24,7 +24,7 @@ public class ChoicePopupActivity extends AppCompatActivity {
         //데이터 가져오기
         Intent intent = getIntent();
         String data = intent.getStringExtra("data");
-        msgTextView.setText(data+"를 선택 하시겠습니까?");
+        msgTextView.setText(data+getString(R.string.select_charator_pop));
 
 
     }
