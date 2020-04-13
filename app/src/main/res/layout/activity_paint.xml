@@ -1,14 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--
+ Copyright (C) 2010 Peter Dornbach.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:coloring="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.PaintActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/paint_view_background"
+        android:layout_width="0dp"
+        android:layout_weight="8.5"
+        android:layout_height="fill_parent"
+        android:background="#fff"
+        android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/paint_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="#FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_logo" />
+
+        <ProgressBar
+            android:id="@+id/paint_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="240dip"
+            android:layout_height="wrap_content"
+            tools:visibility="gone" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_weight="1.5"
+        android:id="@+id/color_buttons_container"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#FF0000"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#FFA500"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#FFFF00"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#32CD32"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#0000FF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#FFC0CB"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#556B2F"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#00FFFF"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#404040"/>
+
+                <com.oasyss.picturebook.widget.ColorButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    coloring:color="#C0C0C0"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- The colors used here should match one of the colors in pick_color.xml -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/border_line_all_black"
+                    android:id="@+id/back_layout"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/pic_back"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/border_line_all_black"
+                    android:id="@+id/eraser_layout"
+                    android:gravity="center">
+                    <com.oasyss.picturebook.widget.ColorButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        coloring:color="#FFFFFF"
+                        android:id="@+id/eraser_color_btn"
+                        android:visibility="gone"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/eraser_img_view"
+                        android:src="@mipmap/eraser"/>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_line_all_black"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:text="완료"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/pick_color_button"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:src="@drawable/palette" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

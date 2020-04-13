@@ -22,8 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import org.androidsoft.coloring.ui.widget.ColorButton;
-import org.androidsoft.coloring.util.ScreenUtils;
+import com.oasyss.picturebook.util.ScreenUtils;
+import com.oasyss.picturebook.widget.ColorButton;
+
 
 import java.util.List;
 
