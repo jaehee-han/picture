@@ -13,11 +13,14 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.oasyss.picturebook.R;
+import com.oasyss.picturebook.activity.popup.ChoiceFinishPopupActivity;
+import com.oasyss.picturebook.activity.popup.ChoicePopupActivity;
 import com.oasyss.picturebook.util.BitmapSaver;
 import com.oasyss.picturebook.util.BitmapSharer;
 import com.oasyss.picturebook.util.Extention;
@@ -59,11 +62,16 @@ public class PaintActivity extends AbstractColoringActivity {
 
     private LinearLayout eraserLayout, backLayout;
 
+    private Button finishBtn;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paint);
+
+        //저장된 비트맵초기화
+        Extention.clearTouchBitMapList();
         paintView = (ImageView) findViewById(R.id.paint_view);
         paintArea = new PaintArea(paintView);
 
@@ -89,6 +97,17 @@ public class PaintActivity extends AbstractColoringActivity {
             @Override
             public void onClick(View view) {
                 paintArea.backBitMap();
+            }
+        });
+
+        //완료
+        finishBtn = (Button)findViewById(R.id.paint_finish_btn) ;
+        finishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChoiceFinishPopupActivity.class);
+                startActivityForResult(intent, Extention.FINISH_POPUP_RESULT_CODE);
+
             }
         });
 
@@ -158,7 +177,7 @@ public class PaintActivity extends AbstractColoringActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, R.string.toast_double_click_back_button, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toast_double_click_back_button_paintActivity, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -248,8 +267,7 @@ public class PaintActivity extends AbstractColoringActivity {
         switch (requestCode)
         {
             case REQUEST_CHOOSE_PICTURE:
-                if (resultCode == RESULT_OK)
-                {
+                if (resultCode == RESULT_OK) {
                     ImageDB.Image image;
                     try {
                         image = data.getParcelableExtra(ChoosePictureActivity.RESULT_IMAGE);
@@ -261,9 +279,17 @@ public class PaintActivity extends AbstractColoringActivity {
                 }
                 break;
             case REQUEST_PICK_COLOR:
-                if (resultCode != RESULT_CANCELED)
-                {
+                if (resultCode != RESULT_CANCELED){
                     colorButtonManager.selectColor(resultCode);
+                }
+                break;
+            case Extention.FINISH_POPUP_RESULT_CODE:
+                if(resultCode == Extention.FINISH_POPUP_RESULT_CODE){
+                    String result = data.getStringExtra("result");
+                    if(result.equals("true")){
+                        Intent intent = new Intent(this, CharNameRecordActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 break;
         }
@@ -396,4 +422,5 @@ public class PaintActivity extends AbstractColoringActivity {
             setImage(bitmap);
         }
     }
+
 }

@@ -14,6 +14,7 @@
 
     <string name="button_go">이동</string>
     <string name="toast_double_click_back_button" tools:ignore="MissingTranslation">종료하려면 한번 더 뒤로가기 버튼을 눌러 주세요.</string>
+    <string name="toast_double_click_back_button_paintActivity" tools:ignore="MissingTranslation">캐릭터 선택화면으로 가시려면 한번 더 뒤로가기 버튼을 눌러 주세요.</string>
     <string name="progress_starting" tools:ignore="MissingTranslation">시작</string>
     <string name="progress_done" tools:ignore="MissingTranslation">종료</string>
     <string name="progress_error" tools:ignore="MissingTranslation">에러</string>
@@ -28,9 +29,13 @@
     <string name="progress_show_smoothed_image" tools:ignore="MissingTranslation">영역 이미지 표시중</string>
     <string name="progress_draw_lines" tools:ignore="MissingTranslation">선 그리는 중</string>
     <string name="empty" translatable="false" />
+
+    <!--    권한 체크-->
     <string name="permission_read_external_storage">외부저장소 읽기 권한이 필요합니다.</string>
     <string name="permission_write_external_storage">외부저장소 쓰기 권한이 필요합니다.</string>
     <string name="permission_expand_status_bar">상태표시줄 잠금 권한이 필요합니다.</string>
+    <string name="permission_record_audio">그림동화 또는 캐릭터명을 위한 마이크 권한이 필요합니다.</string>
+
     <string name="progress_connecting_components">현재 지역을 찾는중입니다.</string>
     <string name="progress_measuring_areas">작은영역 제거중입니다.</string>
     <string name="progress_show_components">그림 만드는중입니다.</string>
@@ -65,10 +70,25 @@
     <string name="error_occurred_toast">클립보드 복사 오류</string>
     <string name="image_list_section_description">이미지 순번 : <xliff:g example="10">%1$d</xliff:g></string>
 
-<!--    ChoicePopupActivity : -->
+    <!--    ChoicePopupActivity : -->
     <string name="select_charator_pop">를 선택 하시겠습니까?</string>
     <string name="function_coming_soon">현재 이 기능은 준비중 입니다.</string>
 
-<!--    MainActivity-->
+    <!--    MainActivity-->
     <string name="window_touch_plz">화면을 터치해 주세요.</string>
+
+    <!--    ChoiceFinishPopupActivity-->
+    <string name="select_finish_pop">색칠을 완료 하시겠습니까?</string>
+    <!--    Popup-->
+    <string name="popup_noti">알림</string>
+    <string name="popup_confirm">확인</string>
+    <string name="popup_cancel">취소</string>
+    <!--    CharNameRecordActivity-->
+    <string name="record_info_text">마이크를 눌러 캐릭터 이름을 녹음해 주세요.</string>
+    <string name="record_buttn">재녹음</string>
+    <string name="record_sound">들어보기</string>
+    <string name="record_finish">완료</string>
+    <string name="record_char_name_start">제 이름은</string>
+    <string name="record_char_name_end">입니다.</string>
+    <string name="record_start">캐릭터 이름을 말씀해 주세요.</string>
 </resources>

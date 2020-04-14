@@ -14,7 +14,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="알림"
+                android:text="@string/popup_noti"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="#000"
@@ -44,7 +44,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:text="확인"
+                android:text="@string/popup_cancel"
+                android:textSize="15sp"
+                android:textColor="#FF0000"
+                android:padding="16dp"
+                android:gravity="center"
+                android:background="#fff"
+                android:layout_width="0dp"
+                android:layout_height="53dp"
+                android:layout_weight="1"
+                android:onClick="mCancel"/>
+            <View
+                android:background="#66bdbdbd"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:text="@string/popup_confirm"
                 android:textSize="15sp"
                 android:textColor="#000"
                 android:padding="16dp"
@@ -54,21 +70,6 @@
                 android:layout_height="53dp"
                 android:layout_weight="1"
                 android:onClick="mConfirm"/>
-            <View
-                android:background="#66bdbdbd"
-                android:layout_width="1dp"
-                android:layout_height="match_parent" />
-            <Button
-                android:text="취소"
-                android:textSize="15sp"
-                android:textColor="#ff7a00"
-                android:padding="16dp"
-                android:gravity="center"
-                android:background="#fff"
-                android:layout_width="0dp"
-                android:layout_height="53dp"
-                android:layout_weight="1"
-                android:onClick="mCancel"/>
         </LinearLayout>
 
 </LinearLayout>

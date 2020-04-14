@@ -27,8 +27,6 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //화면 가로
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_character_choice);
         ScreenUtils.setFullscreen(this);
 
@@ -122,7 +120,7 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==1){
+        if(requestCode == Extention.CHOICE_POPUP_RESULT_CODE){
             if(resultCode == Extention.CHOICE_POPUP_RESULT_CODE){
                 //데이터 받기
                 String result = data.getStringExtra("result");

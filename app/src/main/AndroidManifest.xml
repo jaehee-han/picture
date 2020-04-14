@@ -10,15 +10,24 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.popup.ChoicePopupActivity"
-            android:theme="@style/popUpTheme"
-            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".activity.ChoicePictureBookActivity"></activity>
+        <activity
+            android:name=".activity.CharNameRecordActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.popup.ChoiceFinishPopupActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/popUpTheme" />
+        <activity
+            android:name=".activity.popup.ChoicePopupActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/popUpTheme" />
         <activity
             android:name=".activity.PicCharChoiceActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.CharacterChoiceActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.PaintActivity"
             android:screenOrientation="landscape" />
@@ -32,5 +41,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -68,16 +68,13 @@ public class PaintArea {
         }
         return new NullImage();
     }
-    int bitmapSaveCount = 0;
+
     Bitmap firstBitMap;
 
     public void setImageBitmap(final Bitmap bm) {
-        if(bitmapSaveCount == 0){
-//            Extention.addTouchBitMapList(bm);
 
-            bitmapSaveCount++;
-        }
         firstBitMap = bm;
+        Extention.setOrigin_charator(bm);
 
         setImageBitmapWithSameSize(bm);
         view.setLayoutParams(layoutParams);

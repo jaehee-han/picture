@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //화면 가로
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
         int newUiOptions = uiOptions;
@@ -57,8 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        checkForPermission(Manifest.permission.RECORD_AUDIO, R.string.permission_record_audio);
         checkForPermission(Manifest.permission.READ_EXTERNAL_STORAGE, R.string.permission_read_external_storage);
         checkForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, R.string.permission_write_external_storage);
+
 
         bgLayout = (LinearLayout)findViewById(R.id.go_layout);
         bgLayout.setOnClickListener(this);
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.go_layout:
                 Intent intent = new Intent(getApplicationContext(), PicCharChoiceActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
