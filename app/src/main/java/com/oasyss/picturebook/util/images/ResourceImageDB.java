@@ -70,4 +70,43 @@ public class ResourceImageDB implements ImageDB {
 
         return returnImg;
     }
+    public Image bookSelectImage(String book, int num, Context context){
+        Image returnImg = null;
+        Field[] drawables = R.drawable.class.getDeclaredFields();
+
+        int bookTotal = 0;
+        for (int i = 0; i < drawables.length; i++) {
+            String name = drawables[i].getName();
+            try {
+                if (name.startsWith(IMAGE_PREFIX)){
+                    if(name.indexOf(book+"_") != -1){
+                        bookTotal++;
+                    }
+                    if(name.indexOf(book+"_"+num) != -1){
+                        returnImg = PreparedUriImage.fromResourceId(context, drawables[i].getInt(null));
+                    }
+                }
+            } catch (IllegalAccessException e) {}
+        }
+        Extention.setBookTotal(bookTotal);
+
+        return returnImg;
+    }
+    public Image bookOriginImage(String book, int num, Context context){
+        Image returnImg = null;
+        Field[] drawables = R.drawable.class.getDeclaredFields();
+
+        for (int i = 0; i < drawables.length; i++) {
+            String name = drawables[i].getName();
+            try {
+                if (name.startsWith(IMAGE_PREFIX)){
+                    if(name.indexOf(book+"_"+num) != -1){
+                        returnImg = PreparedUriImage.fromResourceId(context, drawables[i].getInt(null));
+                    }
+                }
+            } catch (IllegalAccessException e) {}
+        }
+
+        return returnImg;
+    }
 }

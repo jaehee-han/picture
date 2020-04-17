@@ -33,7 +33,14 @@ import com.oasyss.picturebook.util.images.ImageDB;
 import com.oasyss.picturebook.util.images.NullImage;
 import com.oasyss.picturebook.util.quell.ColorComparator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class PaintArea {
@@ -41,6 +48,8 @@ public class PaintArea {
     private static final int COLOR_SEARCH_RADIUS = 10;
     private final ViewGroup.LayoutParams layoutParams;
     private Bitmap bitmap = Bitmap.createBitmap(1, 1, Config.ARGB_8888);
+
+
     private int paintColor;
     private final ImageView view;
 
@@ -157,7 +166,14 @@ public class PaintArea {
                 }
             }
             Bitmap newBitmap = FloodFill.fill(bitmap, x, y, paintColor);
-            Extention.addTouchBitMapList(newBitmap);
+            if(Extention.getPictureDiv() == 0){
+                Extention.addTouchBitMapList(newBitmap);
+            }else if(Extention.getPictureDiv() == 1){
+                Extention.addBookBitMapObj(Extention.getBookPage(), newBitmap);
+
+                Extention.addTouchBitMapList(newBitmap);
+            }
+
             setImageBitmapWithSameSize(newBitmap);
         }
         return true;
@@ -179,8 +195,16 @@ public class PaintArea {
             bitMapList.remove(bitMapSize);
             Extention.setTouchBitMapList(bitMapList);
         }
-
-
+    }
+    //색칠된거 불러오기
+    public void originBitmap(Bitmap bitmap){
+//        try {
+//            Thread.sleep(3000);
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        setImageBitmapWithSameSize(bitmap);
 
     }
     public Bitmap getBitmap() {

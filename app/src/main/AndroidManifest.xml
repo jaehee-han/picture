@@ -10,7 +10,10 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ChoicePictureBookActivity"></activity>
+        <activity android:name=".activity.bookList.BookPaintActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".activity.bookList.BookListActivity" />
+        <activity android:name=".activity.ChoicePictureBookActivity" />
         <activity
             android:name=".activity.CharNameRecordActivity"
             android:screenOrientation="landscape" />

@@ -91,4 +91,9 @@
     <string name="record_char_name_start">제 이름은</string>
     <string name="record_char_name_end">입니다.</string>
     <string name="record_start">캐릭터 이름을 말씀해 주세요.</string>
+
+    <!--    BookListActivity-->
+    <string name="book_list_toolbar_title">그림책 선택</string>
+    <string name="book_finish_btn_next">다음</string>
+    <string name="book_finish_btn_end">완료</string>
 </resources>

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oasyss.picturebook.R;
+import com.oasyss.picturebook.activity.bookList.BookListActivity;
 import com.oasyss.picturebook.util.Extention;
 import com.oasyss.picturebook.util.ScreenUtils;
 
@@ -42,6 +43,7 @@ public class CharNameRecordActivity extends AppCompatActivity implements View.On
         ScreenUtils.setFullscreen(this);
 
         recordFinishBtn = (Button)findViewById(R.id.record_finish_btn);
+        recordFinishBtn.setOnClickListener(this);
         recordCharNameTextView = (TextView)findViewById(R.id.record_char_name);
 
         recordImgView = (ImageView)findViewById(R.id.record_img_view);
@@ -128,7 +130,13 @@ public class CharNameRecordActivity extends AppCompatActivity implements View.On
                 stt.startListening(intent);
                 break;
             case R.id.record_finish_btn:
+                    if(recordCharNameTextView.getText().length() > 5){
+                        Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                        startActivity(intent);
 
+                    }else{
+                        Toast.makeText(getApplicationContext(), getString(R.string.record_info_text), Toast.LENGTH_LONG).show();
+                    }
                 break;
         }
     }

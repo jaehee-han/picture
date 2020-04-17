@@ -70,6 +70,8 @@ public class PaintActivity extends AbstractColoringActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paint);
 
+        Extention.setPictureDiv(0);
+
         //저장된 비트맵초기화
         Extention.clearTouchBitMapList();
         paintView = (ImageView) findViewById(R.id.paint_view);
@@ -141,13 +143,9 @@ public class PaintActivity extends AbstractColoringActivity {
                 ImageDB.Image image;
                 Extention.Log("ARG_IMAGE : " + ARG_IMAGE);
                 Extention.Log("extras : " + extras);
-                Extention.Log("img : "+ new ResourceImageDB(PaintActivity.this).randomImage());
-//                if (extras != null && extras.containsKey(ARG_IMAGE)) {
-//                    image = extras.getParcelable(ARG_IMAGE);
-//                } else {
-//                    image = new ResourceImageDB(PaintActivity.this).randomImage();
-//                }
+
                 String choiceChar = intent.getStringExtra("char");
+                Extention.Log("choiceChar : "+ choiceChar);
                 if(extras != null && extras.containsKey(ARG_IMAGE)){
                     image = extras.getParcelable(ARG_IMAGE);
                 }else if(choiceChar != ""){

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:coloring="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,14 +6,29 @@
     android:layout_height="fill_parent"
     android:background="#FFFFFF"
     android:orientation="horizontal">
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/paint_view_background"
         android:layout_width="0dp"
         android:layout_weight="8.5"
         android:layout_height="fill_parent"
-        android:background="#fff"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="#fff">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left|top"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:text="1/4"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:id="@+id/book_page_text"/>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left|bottom"
+            android:layout_margin="16dp"
+            android:text="이전"
+            android:id="@+id/book_back_btn"/>
 
         <ImageView
             android:id="@+id/paint_view"
@@ -22,16 +36,11 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:background="#FFFFFF"
+            android:layout_gravity="center"
             android:src="@drawable/ic_logo"
             android:scaleType="fitCenter" />
 
-        <ProgressBar
-            android:id="@+id/paint_progress"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="240dip"
-            android:layout_height="wrap_content"
-            tools:visibility="gone" />
-    </LinearLayout>
+    </FrameLayout>
     <LinearLayout
         android:layout_weight="1.5"
         android:id="@+id/color_buttons_container"
@@ -169,13 +178,13 @@
                 android:textSize="16dp"
                 android:textColor="#000"
                 android:id="@+id/paint_finish_btn"
-                android:text="완료"/>
-<!--            <ImageView-->
-<!--                android:id="@+id/pick_color_button"-->
-<!--                android:layout_width="fill_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:src="@drawable/palette" />-->
+                android:text="@string/book_finish_btn_next"/>
+            <!--            <ImageView-->
+            <!--                android:id="@+id/pick_color_button"-->
+            <!--                android:layout_width="fill_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:src="@drawable/palette" />-->
         </LinearLayout>
     </LinearLayout>
 
