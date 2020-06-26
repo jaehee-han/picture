@@ -51,13 +51,30 @@ public class BookListActivity extends AppCompatActivity {
     }
 
     public void addBookList(){
-        for(int i=0; i<10; i++){
-            imgList.add(getResources().getDrawable(R.drawable.outline002_chali_1));
-            nameList.add("찰리와 친구들");
 
-            //drawble 이미지 파일명
-            hideNameList.add("chali");
-        }
+        imgList.add(getResources().getDrawable(R.drawable.outline002_chali_1));
+        nameList.add("찰리와 친구들");
+        //drawble 이미지 파일명
+        hideNameList.add("chali");
 
+        imgList.add(getResources().getDrawable(R.drawable.outline003_dog_1));
+        nameList.add("강아지");
+        //drawble 이미지 파일명
+        hideNameList.add("dog");
+
+        imgList.add(getResources().getDrawable(R.drawable.outline004_cat_1));
+        nameList.add("고양이");
+        //drawble 이미지 파일명
+        hideNameList.add("cat");
+
+        imgList.add(getResources().getDrawable(R.drawable.outline006_bird_1));
+        nameList.add("새");
+        //drawble 이미지 파일명
+        hideNameList.add("bird");
+
+        imgList.add(getResources().getDrawable(R.drawable.outline007_rabbit_1));
+        nameList.add("토끼");
+        //drawble 이미지 파일명
+        hideNameList.add("rabbit");
     }
 }

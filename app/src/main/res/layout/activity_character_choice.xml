@@ -59,14 +59,14 @@
                     android:padding="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/charator_mouse">
+                    android:src="@mipmap/charator_cat">
                 </ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:textSize="14dp"
-                    android:text="쥐">
+                    android:text="고양이">
 
                 </TextView>
             </LinearLayout>
@@ -120,14 +120,14 @@
                     android:padding="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/charator_monkey">
+                    android:src="@mipmap/charator_bird">
                 </ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:textSize="14dp"
-                    android:text="원숭이">
+                    android:text="새">
 
                 </TextView>
             </LinearLayout>

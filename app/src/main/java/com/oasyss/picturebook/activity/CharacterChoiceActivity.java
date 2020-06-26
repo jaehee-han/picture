@@ -79,8 +79,8 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearDog.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
 //                alertDialog("원숭이");
-                choiceChar = "monkey";
-                intent.putExtra("data", "원숭이");
+                choiceChar = "bird";
+                intent.putExtra("data", "새");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
             break;
             case R.id.linearMouse:
@@ -90,8 +90,8 @@ public class CharacterChoiceActivity extends AppCompatActivity implements View.O
                 linearRabbit.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
                 linearDog.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.border_line_all));
 
-                choiceChar = "mouse";
-                intent.putExtra("data", "쥐");
+                choiceChar = "cat";
+                intent.putExtra("data", "고양이");
                 startActivityForResult(intent, Extention.CHOICE_POPUP_RESULT_CODE);
             break;
             case R.id.linearRabbit:
